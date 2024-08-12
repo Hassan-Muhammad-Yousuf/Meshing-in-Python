@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+from scipy.spatial import Delaunay  
 
 # creating Nodes 
 left = 0.1
@@ -28,5 +29,24 @@ for x in np.linspace(0, left , nb_elements):
 points = np.array(Nodes)
 plt.plot(points[:,0],points[:,1], 'o')
 
-plt.show()
+
+
+# Creating Elements
+tr1 = Delaunay(points)
+plt.triplot(points[:,0],points[:,1], tr1.simplices)
+plt.plot(points[:,0],points[:,1], 'o')
+
+#plt.show()
+
+#creating a set of points on a circle diameter
+p = []
+r2 = 0.0195
+for x in np.linspace(0, r2, 10):
+    p.append([x,math.sqrt(r2**2-x**2)])
+
+#find the points which contain those elements
+print(tr1.find_simplex(p))
+
+#creating the new set of elements without disturbing circle
+
 
