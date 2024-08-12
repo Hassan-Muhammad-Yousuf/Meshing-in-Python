@@ -56,4 +56,16 @@ plt.plot(points[:,0],points[:,1], 'o')
 
 plt.show()
 
+#exporting txt file for nodes and mesh
+nb_nodes = len(points)
+nb_elements = len(mesh)
+file = open("Node_Mesh.txt","w")
+file.write("{} {}\n" .format(nb_nodes, nb_elements))
+
+for i, node in enumerate(Nodes):
+    file.write("{} {} {}\n".format(i, node[0],node[1]))
+for j, elem in enumerate(mesh):
+    file.write("{} {} {} {}\n".format(j, elem[0],elem[1], elem[2]))
+
+file.close()
 
