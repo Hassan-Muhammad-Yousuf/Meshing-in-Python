@@ -33,8 +33,8 @@ plt.plot(points[:,0],points[:,1], 'o')
 
 # Creating Elements
 tr1 = Delaunay(points)
-plt.triplot(points[:,0],points[:,1], tr1.simplices)
-plt.plot(points[:,0],points[:,1], 'o')
+#plt.triplot(points[:,0],points[:,1], tr1.simplices)
+#plt.plot(points[:,0],points[:,1], 'o')
 
 #plt.show()
 
@@ -48,5 +48,12 @@ for x in np.linspace(0, r2, 10):
 print(tr1.find_simplex(p))
 
 #creating the new set of elements without disturbing circle
+mesh = np.delete(tr1.simplices,[0,153,154,21],0)
+
+
+plt.triplot(points[:,0],points[:,1], mesh)
+plt.plot(points[:,0],points[:,1], 'o')
+
+plt.show()
 
 
